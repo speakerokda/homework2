@@ -5,68 +5,22 @@ sales = {
     "Четверг":     [("капучино", 120, 16), ("латте", 150, 7), ("чай", 60, 18)],
     "Пятница":     [("капучино", 120, 10), ("эспрессо", 90, 21), ("какао", 110, 9)],
 }
-
-total_pon = 0
-for name, price, qty in sales["Понедельник"]:
-    total_pon += price * qty
-print("Понедельник: выручка", total_pon)
-
-best_pon = ""
-cnt_pon = 0
-for name, price, qty in sales["Понедельник"]:
-    if qty > cnt_pon:
-        cnt_pon = qty
-        best_pon = name
-print("Хит Понедельника:", best_pon)
-
-total_vt = 0
-for name, price, qty in sales["Вторник"]:
-    total_vt += price * qty
-print("Вторник: выручка", total_vt)
-
-best_vt = ""
-cnt_vt = 0
-for name, price, qty in sales["Вторник"]:
-    if qty > cnt_vt:
-        cnt_vt = qty
-        best_vt = name
-print("Хит Вторника:", best_vt)
-
-total_sr = 0
-for name, price, qty in sales["Среда"]:
-    total_sr += price * qty
-print("Среда: выручка", total_sr)
-
-best_sr = ""
-cnt_sr = 0
-for name, price, qty in sales["Среда"]:
-    if qty > cnt_sr:
-        cnt_sr = qty
-        best_sr = name
-print("Хит Среды:", best_sr)
-
-total_cht = 0
-for name, price, qty in sales["Четверг"]:
-    total_cht += price * qty
-print("Четверг: выручка", total_cht)
-
-best_cht = ""
-cnt_cht = 0
-for name, price, qty in sales["Четверг"]:
-    if qty > cnt_cht:
-        cnt_cht = qty
-        best_cht = name
-print("Хит Четверга:", best_cht)
-
-total_pt = 0
-for name, price, qty in sales["Пятница"]:
-    total_pt += price * qty
-print("Пятница: выручка", total_pt)
-
-best_pt = ""
-cnt_pt = 0
-for name, price, qty in sales["Пятница"]:
-    if qty > cnt_pt:
-        cnt_pt = qty
-        best_pt = name
-print("Хит Пятницы:", best_pt)
+def revenue_of_day(day):
+    if day not in sales.keys():
+        return 'Неверный ввод или в этот день не работаем'
+    else:
+        revenue = 0
+        best_position = ""
+        count_of_position = 0
+        for name, price, qty in sales[day]:
+            revenue += price * qty
+            if qty > count_of_position:
+                count_of_position = qty
+                best_position = name
+        print(f"{day}: выручка {revenue}")
+        if day != "Пятница" and day != "Среда":
+            return f"Хит {day[:len(day) - 1]}а: {best_position}"
+        else:
+            return f"Хит {day[:len(day) - 1]}ы: {best_position}"
+for day in sales.keys():
+    print(revenue_of_day(day))
