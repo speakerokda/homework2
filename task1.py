@@ -20,7 +20,12 @@ for x, y in sort_of_dict:
     if count_of_5 == 5: break
 print(f"Топ-5 слов: {top5words[0][0]} ({top5words[0][1]}), {top5words[1][0]} ({top5words[1][1]}), {top5words[2][0]} ({top5words[2][1]}), {top5words[3][0]} ({top5words[3][1]}), {top5words[4][0]} ({top5words[4][1]})")
 max_of_length = max(words, key = len)
-print(f"Самое длинное слово: {max_of_length}")
+all_max_words = ""
+for word in words:
+    if len(word) == max_of_length:
+        all_max_words += word
+        all_max_words += " "
+print(f"Самое длинное слово/слова: {all_max_words}")
 list_of_length = [len(word) for word in words]
 dict_of_length = {}
 for length in list_of_length:
